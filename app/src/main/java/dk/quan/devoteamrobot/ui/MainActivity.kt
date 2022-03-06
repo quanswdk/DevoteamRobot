@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
-        binding.viewmodel = viewModel
+        binding.viewModel = viewModel
         setContentView(binding.root)
     }
 

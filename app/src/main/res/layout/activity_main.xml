@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="dk.quan.devoteamrobot.ui.RoomNumberConverters" />
+
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="dk.quan.devoteamrobot.data.RobotViewModel" />
     </data>
 
@@ -15,13 +18,125 @@
         tools:context=".ui.MainActivity">
 
         <TextView
+            android:id="@+id/roomSizeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/roomSize"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <Button
+            android:id="@+id/setColumnsDecrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setColumnsDecrease()}"
+            android:text="@string/minus_sign"
+            app:layout_constraintEnd_toStartOf="@+id/numberOfColumns"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roomSizeText" />
+
+        <EditText
+            android:id="@+id/numberOfColumns"
+            hideKeyboardOnInputDone="@{true}"
+            numberOfColumns="@={RoomNumberConverters.setColumnsToString(context, viewModel.numberOfColumns)}"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:digits="0123456789"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/setColumnsIncrease"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/setColumnsDecrease"
+            app:layout_constraintTop_toBottomOf="@id/roomSizeText"
+            tools:text="10" />
+
+        <Button
+            android:id="@+id/setColumnsIncrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setColumnsIncrease()}"
+            android:text="@string/plus_sign"
+            app:layout_constraintEnd_toStartOf="@id/setRowDecrease"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@+id/numberOfColumns"
+            app:layout_constraintTop_toBottomOf="@id/roomSizeText" />
+
+        <Button
+            android:id="@+id/setRowDecrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setRowsDecrease()}"
+            android:text="@string/minus_sign"
+            app:layout_constraintEnd_toStartOf="@+id/numberOfRows"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/setColumnsIncrease"
+            app:layout_constraintTop_toBottomOf="@id/roomSizeText" />
+
+        <EditText
+            android:id="@+id/numberOfRows"
+            hideKeyboardOnInputDone="@{true}"
+            numberOfRows="@={RoomNumberConverters.setRowsToString(context, viewModel.numberOfRows)}"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:digits="0123456789"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/setRowIncrease"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/setRowDecrease"
+            app:layout_constraintTop_toBottomOf="@id/roomSizeText"
+            tools:text="10" />
+
+        <Button
+            android:id="@+id/setRowIncrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setRowsIncrease()}"
+            android:text="@string/plus_sign"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@+id/numberOfRows"
+            app:layout_constraintTop_toBottomOf="@id/roomSizeText" />
+
+        <TextView
+            android:id="@+id/robotPostionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/robotPosition"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/setRowIncrease"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
