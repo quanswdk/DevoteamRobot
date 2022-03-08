@@ -73,7 +73,7 @@ class RobotViewModel : ObservableViewModel() {
             return numberOfInitColumnsTotal
         }
         set(value) {
-            if (value > 0) {
+            if (value >= 0) {
                 field = value
                 numberOfInitColumnsTotal = value
             }
@@ -100,7 +100,7 @@ class RobotViewModel : ObservableViewModel() {
             return numberOfInitRowsTotal
         }
         set(value) {
-            if (value > 0) {
+            if (value >= 0) {
                 field = value
                 numberOfInitRowsTotal = value
             }
@@ -133,10 +133,93 @@ class RobotViewModel : ObservableViewModel() {
         }
 
     fun setNavigationValue(value: String) {
-        positionsObservable.value += value
+        if (canRobotBeMoved(value)) {
+            positionsObservable.value += value
+        }
     }
 
     private fun clearPositions() {
         positionsObservable.value = ""
+    }
+
+    private fun canRobotBeMoved(value: String): Boolean {
+        var returnValue = true
+        when (value) {
+            "F" -> {
+                returnValue = updatePosition()
+            }
+            "L", "R" -> {
+                updateDirection(value)
+            }
+        }
+        return returnValue
+    }
+
+    private fun updateDirection(value: String) {
+        when (direction) {
+            "N" -> {
+                direction = if (value == "L") {
+                    "W"
+                } else {
+                    "E"
+                }
+            }
+            "S" -> {
+                direction = if (value == "L") {
+                    "E"
+                } else {
+                    "W"
+                }
+            }
+            "E" -> {
+                direction = if (value == "L") {
+                    "N"
+                } else {
+                    "S"
+                }
+            }
+            "W" -> {
+                direction = if (value == "L") {
+                    "S"
+                } else {
+                    "N"
+                }
+            }
+        }
+    }
+
+    private fun updatePosition() : Boolean {
+        var returnValue = true
+        when (direction) {
+            "N" -> {
+                if (numberOfInitRows > 0) {
+                    numberOfInitRows--
+                } else {
+                    returnValue = false
+                }
+            }
+            "S" -> {
+                if (numberOfInitRows < numberOfRoomRows) {
+                    numberOfInitRows++
+                } else {
+                    returnValue = false
+                }
+            }
+            "E" -> {
+                if (numberOfInitColumns < numberOfRoomColumns) {
+                    numberOfInitColumns++
+                } else {
+                    returnValue = false
+                }
+            }
+            "W" -> {
+                if (numberOfInitColumns > 0) {
+                    numberOfInitColumns--
+                } else {
+                    returnValue = false
+                }
+            }
+        }
+        return returnValue
     }
 }
