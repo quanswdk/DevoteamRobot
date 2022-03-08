@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@id/roomSizeText" />
 
         <TextView
-            android:id="@+id/robotPostionText"
+            android:id="@+id/robotPositionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
@@ -137,6 +137,150 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/setRowIncrease"
             app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <Button
+            android:id="@+id/setInitColumnsPositionDecrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setInitColumnsPositionDecrease()}"
+            android:text="@string/minus_sign"
+            app:layout_constraintEnd_toStartOf="@+id/initColumnsPosition"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/robotPositionText" />
+
+        <EditText
+            android:id="@+id/initColumnsPosition"
+            hideKeyboardOnInputDone="@{true}"
+            numberOfInitColumns="@={RoomNumberConverters.setInitColumnsToString(context, viewModel.numberOfInitColumns)}"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:digits="0123456789"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/setInitColumnsPositionIncrease"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/setInitColumnsPositionDecrease"
+            app:layout_constraintTop_toBottomOf="@id/robotPositionText"
+            tools:text="5" />
+
+        <Button
+            android:id="@+id/setInitColumnsPositionIncrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setInitColumnsPositionIncrease()}"
+            android:text="@string/plus_sign"
+            app:layout_constraintEnd_toStartOf="@id/setInitRowsPositionDecrease"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/initColumnsPosition"
+            app:layout_constraintTop_toBottomOf="@id/robotPositionText" />
+
+        <Button
+            android:id="@+id/setInitRowsPositionDecrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setInitRowsPositionDecrease()}"
+            android:text="@string/minus_sign"
+            app:layout_constraintEnd_toStartOf="@id/initRowsPosition"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/setInitColumnsPositionIncrease"
+            app:layout_constraintTop_toBottomOf="@id/robotPositionText" />
+
+        <EditText
+            android:id="@+id/initRowsPosition"
+            hideKeyboardOnInputDone="@{true}"
+            numberOfInitRows="@={RoomNumberConverters.setInitRowsToString(context, viewModel.numberOfInitRows)}"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:digits="0123456789"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/setInitRowsPositionIncrease"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/setInitRowsPositionDecrease"
+            app:layout_constraintTop_toBottomOf="@id/robotPositionText"
+            tools:text="5" />
+
+        <Button
+            android:id="@+id/setInitRowsPositionIncrease"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.setInitRowsPositionIncrease()}"
+            android:text="@string/plus_sign"
+            app:layout_constraintEnd_toStartOf="@id/initDirection"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@+id/initRowsPosition"
+            app:layout_constraintTop_toBottomOf="@id/robotPositionText" />
+
+        <EditText
+            android:id="@+id/initDirection"
+            direction="@={RoomNumberConverters.setDirection(context, viewModel.direction)}"
+            hideKeyboardOnInputDone="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:digits="NSEW"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="textCapCharacters"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/setInitRowsPositionIncrease"
+            app:layout_constraintTop_toBottomOf="@id/robotPositionText"
+            tools:text="N" />
+
+        <TextView
+            android:id="@+id/navigationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/navigation"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/initDirection"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <TextView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/navigationText"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            tools:text="LFFRFLRFFFL" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

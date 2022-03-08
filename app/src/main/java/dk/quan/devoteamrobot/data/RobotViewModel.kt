@@ -6,6 +6,9 @@ import dk.quan.devoteamrobot.util.ObservableViewModel
 
 const val INITIAL_NUMBER_OF_COLUMNS = 5
 const val INITIAL_NUMBER_OF_ROWS = 5
+const val INITIAL_NUMBER_OF_INIT_COLUMNS = 3
+const val INITIAL_NUMBER_OF_INIT_ROWS = 3
+const val INITIAL_DIRECTION = "N"
 
 class RobotViewModel : ObservableViewModel() {
 
@@ -58,4 +61,65 @@ class RobotViewModel : ObservableViewModel() {
         numberOfRows += 1
         notifyPropertyChanged(BR.numberOfRows)
     }
+
+    private var numberOfInitColumnsTotal = INITIAL_NUMBER_OF_INIT_COLUMNS
+    var numberOfInitColumns: Int = INITIAL_NUMBER_OF_INIT_COLUMNS
+        @Bindable get() {
+            return numberOfInitColumnsTotal
+        }
+        set(value) {
+            if (value > 0) {
+                field = value
+                numberOfInitColumnsTotal = value
+            }
+            notifyPropertyChanged(BR.numberOfInitColumns)
+        }
+
+    fun setInitColumnsPositionDecrease() {
+        if (numberOfInitColumns > 0) {
+            numberOfInitColumns -= 1
+            notifyPropertyChanged(BR.numberOfInitColumns)
+        }
+    }
+
+    fun setInitColumnsPositionIncrease() {
+        numberOfInitColumns += 1
+        notifyPropertyChanged(BR.numberOfInitColumns)
+    }
+
+    private var numberOfInitRowsTotal = INITIAL_NUMBER_OF_INIT_ROWS
+    var numberOfInitRows: Int = INITIAL_NUMBER_OF_INIT_ROWS
+        @Bindable get() {
+            return numberOfInitRowsTotal
+        }
+        set(value) {
+            if (value > 0) {
+                field = value
+                numberOfInitRowsTotal = value
+            }
+            notifyPropertyChanged(BR.numberOfInitRows)
+        }
+
+    fun setInitRowsPositionDecrease() {
+        if (numberOfInitRows > 0) {
+            numberOfInitRows -= 1
+            notifyPropertyChanged(BR.numberOfInitRows)
+        }
+    }
+
+    fun setInitRowsPositionIncrease() {
+        numberOfInitRows += 1
+        notifyPropertyChanged(BR.numberOfInitRows)
+    }
+
+    private var initDirection = INITIAL_DIRECTION
+    var direction: String = INITIAL_DIRECTION
+        @Bindable get() {
+            return initDirection
+        }
+        set(value) {
+            field = value
+            initDirection = value
+            notifyPropertyChanged(BR.direction)
+        }
 }
