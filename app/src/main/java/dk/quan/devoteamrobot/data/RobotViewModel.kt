@@ -73,7 +73,7 @@ class RobotViewModel : ObservableViewModel() {
             return numberOfInitColumnsTotal
         }
         set(value) {
-            if (value >= 0) {
+            if (value in 0..numberOfRoomColumns) {
                 field = value
                 numberOfInitColumnsTotal = value
             }
@@ -100,7 +100,7 @@ class RobotViewModel : ObservableViewModel() {
             return numberOfInitRowsTotal
         }
         set(value) {
-            if (value >= 0) {
+            if (value in 0..numberOfRoomRows) {
                 field = value
                 numberOfInitRowsTotal = value
             }
