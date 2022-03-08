@@ -2,9 +2,12 @@
     <string name="app_name">Devoteam Robot</string>
     <string name="roomSize">Room size</string>
     <string name="robotPosition">Robot position</string>
-    <string name="navigation">Navigation</string>
+    <string name="positions">Positions</string>
     <string name="minus_sign">-</string>
     <string name="plus_sign">+</string>
+    <string name="left">L</string>
+    <string name="right">R</string>
+    <string name="forward">F</string>
     <string name="column_format">C: %d</string>
     <string name="row_format">R: %d</string>
 </resources>

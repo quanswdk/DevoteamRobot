@@ -1,6 +1,9 @@
 package dk.quan.devoteamrobot.data
 
+import android.content.Context
 import androidx.databinding.Bindable
+import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.MutableLiveData
 import dk.quan.devoteamrobot.BR
 import dk.quan.devoteamrobot.util.ObservableViewModel
 
@@ -11,6 +14,8 @@ const val INITIAL_NUMBER_OF_INIT_ROWS = 3
 const val INITIAL_DIRECTION = "N"
 
 class RobotViewModel : ObservableViewModel() {
+
+    val positionsObservable: MutableLiveData<String> = MutableLiveData("")
 
     private var numberOfColumnsTotal = INITIAL_NUMBER_OF_COLUMNS
     var numberOfColumns: Int = INITIAL_NUMBER_OF_COLUMNS
@@ -23,6 +28,7 @@ class RobotViewModel : ObservableViewModel() {
                 numberOfColumnsTotal = value
             }
             notifyPropertyChanged(BR.numberOfColumns)
+            clearPositions()
         }
 
     fun setColumnsDecrease() {
@@ -48,6 +54,7 @@ class RobotViewModel : ObservableViewModel() {
                 numberOfRowsTotal = value
             }
             notifyPropertyChanged(BR.numberOfRows)
+            clearPositions()
         }
 
     fun setRowsDecrease() {
@@ -79,12 +86,14 @@ class RobotViewModel : ObservableViewModel() {
         if (numberOfInitColumns > 0) {
             numberOfInitColumns -= 1
             notifyPropertyChanged(BR.numberOfInitColumns)
+            //clearPositions() // TODO: should this be removed
         }
     }
 
     fun setInitColumnsPositionIncrease() {
         numberOfInitColumns += 1
         notifyPropertyChanged(BR.numberOfInitColumns)
+        //clearPositions() // TODO: should this be removed
     }
 
     private var numberOfInitRowsTotal = INITIAL_NUMBER_OF_INIT_ROWS
@@ -104,12 +113,14 @@ class RobotViewModel : ObservableViewModel() {
         if (numberOfInitRows > 0) {
             numberOfInitRows -= 1
             notifyPropertyChanged(BR.numberOfInitRows)
+            //clearPositions() // TODO: should this be removed
         }
     }
 
     fun setInitRowsPositionIncrease() {
         numberOfInitRows += 1
         notifyPropertyChanged(BR.numberOfInitRows)
+        //clearPositions() // TODO: should this be removed
     }
 
     private var initDirection = INITIAL_DIRECTION
@@ -122,4 +133,12 @@ class RobotViewModel : ObservableViewModel() {
             initDirection = value
             notifyPropertyChanged(BR.direction)
         }
+
+    fun setNavigationValue(value: String) {
+        positionsObservable.value += value
+    }
+
+    private fun clearPositions() {
+        positionsObservable.value = ""
+    }
 }

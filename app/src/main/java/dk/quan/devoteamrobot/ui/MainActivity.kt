@@ -1,14 +1,15 @@
 package dk.quan.devoteamrobot.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import dk.quan.devoteamrobot.data.RobotViewModel
 import dk.quan.devoteamrobot.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -19,6 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         binding.viewModel = viewModel
+
+        viewModel.positionsObservable.observe(this) {
+            binding.positions = it
+        }
+
         setContentView(binding.root)
     }
 
