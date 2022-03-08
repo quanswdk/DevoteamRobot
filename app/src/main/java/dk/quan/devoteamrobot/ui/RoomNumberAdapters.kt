@@ -11,21 +11,21 @@ import androidx.databinding.InverseMethod
 import dk.quan.devoteamrobot.R
 
 object RoomNumberAdapters {
-    @BindingAdapter("numberOfColumns")
+    @BindingAdapter("numberOfRoomColumns")
     @JvmStatic
-    fun setNumberOfColumns(view: EditText, value: String) {
+    fun setNumberOfRoomColumns(view: EditText, value: String) {
         view.setText(value)
     }
 
-    @InverseBindingAdapter(attribute = "numberOfColumns")
+    @InverseBindingAdapter(attribute = "numberOfRoomColumns")
     @JvmStatic
-    fun getNumberOfColumns(editText: EditText): String {
+    fun getNumberOfRoomColumns(editText: EditText): String {
         return editText.text.toString()
     }
 
-    @BindingAdapter("numberOfColumnsAttrChanged")
+    @BindingAdapter("numberOfRoomColumnsAttrChanged")
     @JvmStatic
-    fun setColumnsListener(view: EditText, listener: InverseBindingListener?) {
+    fun setRoomColumnsListener(view: EditText, listener: InverseBindingListener?) {
         view.onFocusChangeListener = View.OnFocusChangeListener { focusedView, hasFocus ->
             val textView = focusedView as TextView
             if (hasFocus) {
@@ -43,21 +43,21 @@ object RoomNumberAdapters {
         }
     }
 
-    @BindingAdapter("numberOfRows")
+    @BindingAdapter("numberOfRoomRows")
     @JvmStatic
-    fun setNumberOfRows(view: EditText, value: String) {
+    fun setNumberOfRoomRows(view: EditText, value: String) {
         view.setText(value)
     }
 
-    @InverseBindingAdapter(attribute = "numberOfRows")
+    @InverseBindingAdapter(attribute = "numberOfRoomRows")
     @JvmStatic
-    fun getNumberOfRows(editText: EditText): String {
+    fun getNumberOfRoomRows(editText: EditText): String {
         return editText.text.toString()
     }
 
-    @BindingAdapter("numberOfRowsAttrChanged")
+    @BindingAdapter("numberOfRoomRowsAttrChanged")
     @JvmStatic
-    fun setRowsListener(view: EditText, listener: InverseBindingListener?) {
+    fun setRoomRowsListener(view: EditText, listener: InverseBindingListener?) {
         view.onFocusChangeListener = View.OnFocusChangeListener { focusedView, hasFocus ->
             val textView = focusedView as TextView
             if (hasFocus) {
@@ -173,23 +173,23 @@ object RoomNumberAdapters {
 }
 
 object RoomNumberConverters {
-    @InverseMethod("stringToNumberOfColumns")
+    @InverseMethod("stringToNumberOfRoomColumns")
     @JvmStatic
-    fun setColumnsToString(unused: Context, value: Int): String {
+    fun setRoomColumnsToString(unused: Context, value: Int): String {
         return value.toString()
     }
 
     @JvmStatic
-    fun stringToNumberOfColumns(unused: Context, value: String) = value.toInt()
+    fun stringToNumberOfRoomColumns(unused: Context, value: String) = value.toInt()
 
-    @InverseMethod("stringToNumberOfRows")
+    @InverseMethod("stringToNumberOfRoomRows")
     @JvmStatic
-    fun setRowsToString(unused: Context, value: Int): String {
+    fun setRoomRowsToString(unused: Context, value: Int): String {
         return value.toString()
     }
 
     @JvmStatic
-    fun stringToNumberOfRows(unused: Context, value: String) = value.toInt()
+    fun stringToNumberOfRoomRows(unused: Context, value: String) = value.toInt()
 
     @InverseMethod("stringToNumberOfInitColumns")
     @JvmStatic

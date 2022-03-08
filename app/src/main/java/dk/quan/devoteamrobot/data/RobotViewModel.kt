@@ -1,14 +1,12 @@
 package dk.quan.devoteamrobot.data
 
-import android.content.Context
 import androidx.databinding.Bindable
-import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import dk.quan.devoteamrobot.BR
 import dk.quan.devoteamrobot.util.ObservableViewModel
 
-const val INITIAL_NUMBER_OF_COLUMNS = 5
-const val INITIAL_NUMBER_OF_ROWS = 5
+const val INITIAL_NUMBER_OF_ROOM_COLUMNS = 5
+const val INITIAL_NUMBER_OF_ROOM_ROWS = 5
 const val INITIAL_NUMBER_OF_INIT_COLUMNS = 3
 const val INITIAL_NUMBER_OF_INIT_ROWS = 3
 const val INITIAL_DIRECTION = "N"
@@ -17,56 +15,56 @@ class RobotViewModel : ObservableViewModel() {
 
     val positionsObservable: MutableLiveData<String> = MutableLiveData("")
 
-    private var numberOfColumnsTotal = INITIAL_NUMBER_OF_COLUMNS
-    var numberOfColumns: Int = INITIAL_NUMBER_OF_COLUMNS
+    private var numberOfRoomColumnsTotal = INITIAL_NUMBER_OF_ROOM_COLUMNS
+    var numberOfRoomColumns: Int = INITIAL_NUMBER_OF_ROOM_COLUMNS
         @Bindable get() {
-            return numberOfColumnsTotal
+            return numberOfRoomColumnsTotal
         }
         set(value) {
             if (value > 0) {
                 field = value
-                numberOfColumnsTotal = value
+                numberOfRoomColumnsTotal = value
             }
-            notifyPropertyChanged(BR.numberOfColumns)
+            notifyPropertyChanged(BR.numberOfRoomColumns)
             clearPositions()
         }
 
-    fun setColumnsDecrease() {
-        if (numberOfColumns > 0) {
-            numberOfColumns -= 1
-            notifyPropertyChanged(BR.numberOfColumns)
+    fun setRoomColumnsDecrease() {
+        if (numberOfRoomColumns > 0) {
+            numberOfRoomColumns -= 1
+            notifyPropertyChanged(BR.numberOfRoomColumns)
         }
     }
 
-    fun setColumnsIncrease() {
-        numberOfColumns += 1
-        notifyPropertyChanged(BR.numberOfColumns)
+    fun setRoomColumnsIncrease() {
+        numberOfRoomColumns += 1
+        notifyPropertyChanged(BR.numberOfRoomColumns)
     }
 
-    private var numberOfRowsTotal = INITIAL_NUMBER_OF_ROWS
-    var numberOfRows: Int = INITIAL_NUMBER_OF_ROWS
+    private var numberOfRoomRowsTotal = INITIAL_NUMBER_OF_ROOM_ROWS
+    var numberOfRoomRows: Int = INITIAL_NUMBER_OF_ROOM_ROWS
         @Bindable get() {
-            return numberOfRowsTotal
+            return numberOfRoomRowsTotal
         }
         set(value) {
             if (value > 0) {
                 field = value
-                numberOfRowsTotal = value
+                numberOfRoomRowsTotal = value
             }
-            notifyPropertyChanged(BR.numberOfRows)
+            notifyPropertyChanged(BR.numberOfRoomRows)
             clearPositions()
         }
 
-    fun setRowsDecrease() {
-        if (numberOfRows > 0) {
-            numberOfRows -= 1
-            notifyPropertyChanged(BR.numberOfRows)
+    fun setRoomRowsDecrease() {
+        if (numberOfRoomRows > 0) {
+            numberOfRoomRows -= 1
+            notifyPropertyChanged(BR.numberOfRoomRows)
         }
     }
 
-    fun setRowsIncrease() {
-        numberOfRows += 1
-        notifyPropertyChanged(BR.numberOfRows)
+    fun setRoomRowsIncrease() {
+        numberOfRoomRows += 1
+        notifyPropertyChanged(BR.numberOfRoomRows)
     }
 
     private var numberOfInitColumnsTotal = INITIAL_NUMBER_OF_INIT_COLUMNS
